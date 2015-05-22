@@ -1,0 +1,114 @@
+/* width: 250px */
+
+.leftmenu {
+  width: 280px; /* Dependent */
+  position: fixed;
+  top: 0;
+  left: 0; 
+  bottom: 0;
+  z-index: 1; /* so the menu or its navicon stays above all content */
+  overflow-y: auto;
+  overflow-x: visible;
+  -webkit-overflow-scroll: touch; /* for smooth scrolling on mobile */
+}
+.leftmenu .menuitems{
+  width:250px; /* Dependent */
+  height:100%;
+  background: #fff;
+  overflow-y:scroll;
+}
+.leftmenu .menuitems > ul{
+  min-height: 100%;
+  font-size:1.2em;
+  /*line-height:50px;*/
+  color:#000;
+  text-align:left;
+}
+.leftmenu .menuitems{
+  -webkit-box-shadow: 2px 0 10px 0 #aaa;
+     -moz-box-shadow: 2px 0 10px 0 #aaa;
+          box-shadow: 2px 0 10px 0 #aaa;
+}
+.leftmenu a{
+  display:block;
+  color:inherit;
+  border-bottom:1px solid #aaa;
+  padding-left:5%;
+  padding:2px 0 2px 5%;
+}
+.leftmenu a:hover{
+  /*background:#456;*/
+}
+.leftmenu ul ul a {
+  font-size:80%;
+  /*line-height:40px;*/
+  padding-left:10%;
+}
+.leftmenu ul ul ul a {
+  font-size:60%;
+  padding-left:15%;
+}
+.leftmenu .header{
+  /*background:#37c;*/
+  color:#fff;
+  font-weight:bold;
+  font-size:25px;
+  line-height:60px;
+}
+.leftmenu .header:hover{
+  /*background:#48d;*/
+}
+#maincontainer{
+  height:inherit;
+}
+.menuselect{
+  /*background:#456;*/
+}
+
+.leftmenu .overhang{
+  height:100%;
+  top:0;
+  bottom:0;
+  left:250px; /* Dependent */
+  width:50px; /* Dependent */
+  position:absolute;
+}
+
+/* ---------------------------------------------------Javascript class switch */
+.leftmenu.hidden {
+  left: -250px; /* Dependent */
+}
+.leftmenu.hidden .overhang{
+  background: rgba(80,80,80,0.02);
+}
+.leftmenu.hidden.enabled:hover{
+  /*left: 0;*/
+}
+.leftmenu.hidden:hover .overhang{
+  background: transparent;
+}
+/* -- Responsive Styles (Media Queries) ------------------------------------- */
+@media (max-width: 900px) {
+  .leftmenu {
+    left: -250px; /* Dependent */
+  }
+  .leftmenu.hidden {
+    left: 0;
+  }
+  .leftmenu .overhang{
+    background: rgba(80,80,80,0.02);
+  }
+  .leftmenu #closer{
+    display:none;
+  }
+
+}
+@media (min-width: 600px) {
+  .leftmenu{
+    -webkit-transition: all 0.2s ease-out;
+       -moz-transition: all 0.2s ease-out;
+        -ms-transition: all 0.2s ease-out;
+         -o-transition: all 0.2s ease-out;
+            transition: all 0.2s ease-out;
+  }
+}

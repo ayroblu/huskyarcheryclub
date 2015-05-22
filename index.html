@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<title>Husky Archery Club</title>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<meta name="viewport" content="width=device-width, user-scalable=no">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/icon">
+<link rel="icon" href="/favicon.ico" type="image/icon">
+<link rel="stylesheet" type="text/css" href="/static/extcss/normalize.css">
+
+<link rel="stylesheet" type="text/css" href="/static/basic.css">
+<link rel="stylesheet" type="text/css" href="/static/style.css">
+<!--[if lt IE 9]>
+  <script src="/static/extjs/html5shiv.min.js"></script>
+  <script src="/static/extjs/classlist.js"></script>
+<![endif]-->
+<!--[if lt IE 7]>
+  <script type="text/javascript" src="/static/cssSandpaperjs/EventHelpers.js"></script>
+  <script type="text/javascript" src="/static/cssSandpaperjs/cssQuery-p.js"></script>
+  <script type="text/javascript" src="/static/cssSandpaperjs/jcoglan.com/sylvester.js"></script>
+  <script type="text/javascript" src="/static/cssSandpaperjs/cssSandpaper.js"></script>
+<![endif]-->
+
+</head>
+<body>
+<section class="mainstrip first">
+  <!-- Background? -->
+  <div class="part">
+    <h1>Husky Archery Club</h1>
+  </div>
+</section>
+
+<section class="mainstrip second">
+  <div class="semipart">
+    <img class="clock" src="/static/img/clock.png">
+    <h2>Visit us in the IMA</h2>
+    <div class="centered">
+      <h3>Hours:</h3>
+      <ul>
+        <li>Monday: 7pm - 9pm (Club members only)</li>
+        <li>Wednesday: 7pm - 9pm (Club members only)</li>
+        <li>Friday: 6pm - 9pm (Free to all people)</li>
+        <li>Saturday: 3pm - 5pm (Club members only)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="mainstrip third">
+  <div class="filler" id="map-canvas"></div>
+  <div class="filler map-cover" id="map-cover"></div>
+</section>
+
+<section class="mainstrip fourth">
+  <div class="part">
+    <h2>Questions?</h2>
+    <p>If you have questions, please email us at <a href="archers@uw.edu">archers@uw.edu</a> or contact our club president, Kevin Fan at <a href="kpyfan@uw.edu">kpyfan@uw.edu</a></p>
+  </div>
+</section>
+
+<footer>
+  Designed by Ben Lu
+</footer>
+
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script>
+// IMA map
+function initialize() {
+  var mapCanvas = document.getElementById('map-canvas');
+  var myLatlng = new google.maps.LatLng(47.653556, -122.301194);
+  var mapOptions = {
+    center: myLatlng,
+    zoom: 15,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    disableDefaultUI: true,
+    //panControl: false,
+    //zoomControl: false,
+    //scaleControl: false,
+  }
+  var map = new google.maps.Map(mapCanvas, mapOptions)
+  var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: 'IMA'
+  });
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+<script>
+var mapCover = document.getElementById('map-cover');
+mapCover.onclick = function() {
+  mapCover.classList.toggle("nodisplay");
+}
+</script>
+
+<script>
+// Google Analytics
+</script>
+</body>
+</html>

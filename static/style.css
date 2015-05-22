@@ -1,0 +1,72 @@
+.filler{
+  height:100%;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+}
+.nodisplay{
+  display:none;
+}
+.map-cover{
+  background:rgba(88,150,250,0.1);
+}
+.clock{
+  max-width:300px;
+  max-height:300px;
+  width:auto;
+  height:auto;
+}
+.semipart{
+  padding-top:7%;padding-bottom:7%;
+}
+.semipart img{
+  padding-bottom:3%;
+}
+.mainstrip{
+  text-align:center;
+  overflow:hidden;
+  position:relative;
+  background-position:center center;
+  background-size:cover;
+  -ms-behavior: url(/static/background-size-polyfill/backgroundsize.min.htc);
+  min-height:600px;
+
+  -webkit-transform-style: preserve-3d;
+     -moz-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+@media (max-width:800px) {
+  .mainstrip{
+    min-height:450px;
+  }
+}
+.mainstrip.first{
+  background-image:url(/static/img/archer.jpg);
+}
+.mainstrip.second{
+  /* background-image:url(/static/img/ima.png); */
+  color:black;
+}
+.mainstrip.third{
+}
+.mainstrip.fourth{
+  color:black;
+}
+
+.mainstrip .part{
+  margin-top:20%;
+}
+.mainstrip .part h1{
+  font-variant: small-caps;
+  font-size:4em;
+  letter-spacing:3px;
+  font-weight:bold;
+  margin-top:50px;
+  font-family: “Century Gothic”, CenturyGothic, AppleGothic, sans-serif;
+}
+.mainstrip .part .centered{
+  width:320px;
+  text-align:left;
+  margin-left:auto;margin-right:auto;
+}
