@@ -23,12 +23,55 @@
 .semipart img{
   padding-bottom:3%;
 }
+.fbimg{
+  max-width:50px;
+  max-height:50px;
+  width:auto;
+  height:auto;
+  cursor:pointer;
+}
+.fbimg:hover{
+  opacity: 0.9;
+  filter: alpha(opacity=90); /* For IE8 and earlier */
+}
+.fbpopup{
+  display:none;
+  box-shadow: 0 0 10px 0px rgba(50,50,50,0.5);
+  width:240px;
+  left:50%;
+  margin-left:-125px;
+  padding:5px;
+  z-index: 1;
+
+  position: absolute;
+  color: #ffffff;
+  background: #223344;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 6px;
+}
+.fbpopup:after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -8px;
+  width: 0; height: 0;
+  border-bottom: 8px solid #223344;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+}
+.show{
+  display:block;
+}
+
 .mainstrip{
   text-align:center;
   overflow:hidden;
   position:relative;
   background-position:center center;
   background-size:cover;
+  background-color:#eee;
   -ms-behavior: url(/static/background-size-polyfill/backgroundsize.min.htc);
   min-height:600px;
 
@@ -41,8 +84,16 @@
     min-height:450px;
   }
 }
-.mainstrip.first{
+.mainstrip.backfirst{
   background-image:url(/static/img/archer.jpg);
+  position:fixed;
+  z-index:-1;
+  top:0;
+  left:0;
+  right:0;
+}
+.mainstrip.first{
+  background:transparent;
 }
 .mainstrip.second{
   /* background-image:url(/static/img/ima.png); */

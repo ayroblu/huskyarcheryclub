@@ -25,8 +25,9 @@
 
 </head>
 <body>
+<section id="headerimg" class="mainstrip backfirst">
+</section>
 <section class="mainstrip first">
-  <!-- Background? -->
   <div class="part">
     <h1>Husky Archery Club</h1>
   </div>
@@ -57,7 +58,9 @@
   <div class="part">
     <h2>Questions?</h2>
     <p>If you have questions, please email us at <a href="archers@uw.edu">archers@uw.edu</a> or contact our club president, Kevin Fan at <a href="kpyfan@uw.edu">kpyfan@uw.edu</a></p>
+    <p><img id="fbimg" src="/static/img/fb.png" class="fbimg"></p>
   </div>
+  <div id="fbpopup" class="fbpopup"><span>Check out our Facebook Page!</span></div>
 </section>
 
 <footer>
@@ -94,6 +97,38 @@ var mapCover = document.getElementById('map-cover');
 mapCover.onclick = function() {
   mapCover.classList.toggle("nodisplay");
 }
+var fbimg = document.getElementById('fbimg');
+fbimg.onclick = function() {
+  window.open("https://facebook.com/HuskyArchery",'_blank');
+}
+var fbpopup = document.getElementById('fbpopup');
+fbimg.onmouseover = function(e) {
+  fbpopup.classList.add('show');
+  fbpopup.style.top = fbimg.getBoundingClientRect().top;
+};
+fbimg.onmousemove = function(e) {
+};
+fbimg.onmouseout = function(e) {
+  fbpopup.classList.remove('show');
+};
+
+// Create cross browser requestAnimationFrame method:
+window.requestAnimationFrame = window.requestAnimationFrame
+ || window.mozRequestAnimationFrame
+ || window.webkitRequestAnimationFrame
+ || window.msRequestAnimationFrame
+ || function(f){setTimeout(f, 1000/60)}
+ 
+var headerimg = document.getElementById('headerimg');
+
+function parallaxheader(){
+ var scrolltop = window.pageYOffset // get number of pixels document has scrolled vertically 
+ headerimg.style.top = -scrolltop * .2 + 'px' // move bubble1 at 20% of scroll rate
+}
+ 
+window.addEventListener('scroll', function(){ // on page scroll
+ requestAnimationFrame(parallaxheader) // call parallaxbubbles() on next available screen paint
+}, false)
 </script>
 
 <script>
