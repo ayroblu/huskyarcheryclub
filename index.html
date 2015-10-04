@@ -26,16 +26,39 @@
 </head>
 <body>
 <section id="headerimg" class="mainstrip backfirst">
+  <div class="stretchy-wrapper archer"><div></div></div>
 </section>
 <section class="mainstrip first">
-  <div class="part">
+  <div class="container">
+    <div class="space"></div>
     <h1>Husky Archery Club</h1>
   </div>
 </section>
+<!--<section class="mainstrip">
+  <div class="stretchy-wrapper grouppic"><div></div></div>
+</section>-->
 
 <section class="mainstrip second">
   <div class="semipart">
-    <img class="clock" src="/static/img/clock.png">
+    <!--<img class="doorframe" src="/static/img/doorframe.svg" alt="">-->
+    <svg class="doorframe" viewBox="0 0 345.654 152.909">
+    <g>
+      <path fill="none" stroke="#58595B" stroke-width="3" stroke-miterlimit="10" d="M82.978,125.725c0,1.559-1.226,3.188-2.723,3.621
+        L4.223,151.302c-1.498,0.433-2.723-0.489-2.723-2.048V27.864c0-1.559,1.226-3.188,2.723-3.621L80.254,2.287
+        c1.498-0.433,2.723,0.489,2.723,2.048V125.725z"/>
+    </g>
+    <g>
+      <path fill="none" stroke="#58595B" stroke-width="3" stroke-miterlimit="10" d="M262.677,125.724c0,1.559-1.275,2.834-2.835,2.834
+        H85.812c-1.559,0-2.834-1.275-2.834-2.834V4.334c0-1.559,1.275-2.834,2.834-2.834h174.03c1.56,0,2.835,1.275,2.835,2.834V125.724z"
+        />
+    </g>
+    <g>
+      <path fill="none" stroke="#58595B" stroke-width="3" stroke-miterlimit="10" d="M344.154,149.253c0,1.559-1.226,2.48-2.724,2.048
+        l-76.03-21.957c-1.498-0.433-2.724-2.062-2.724-3.621V4.335c0-1.559,1.226-2.48,2.724-2.048l76.03,21.957
+        c1.498,0.433,2.724,2.062,2.724,3.621V149.253z"/>
+    </g>
+    <image src="/static/img/doorframe.png"/>
+    </svg>
     <h2>Visit us in the IMA</h2>
     <div class="centered">
       <h3>Hours:</h3>
@@ -51,11 +74,11 @@
 
 <section class="mainstrip third">
   <div class="filler" id="map-canvas"></div>
-  <div class="filler map-cover" id="map-cover"></div>
 </section>
 
 <section class="mainstrip fourth">
-  <div class="part">
+  <div class="container">
+    <div class="space"></div>
     <h2>Questions?</h2>
     <p>If you have questions, please email us at <a href="archers@uw.edu">archers@uw.edu</a> or contact our club president, Kevin Fan at <a href="kpyfan@uw.edu">kpyfan@uw.edu</a></p>
     <p><img id="fbimg" src="/static/img/fb.png" class="fbimg"></p>
@@ -78,6 +101,8 @@ function initialize() {
     zoom: 15,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     disableDefaultUI: true,
+    scrollwheel:false,
+    draggable:false,
     //panControl: false,
     //zoomControl: false,
     //scaleControl: false,
@@ -93,10 +118,10 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 
 <script>
-var mapCover = document.getElementById('map-cover');
-mapCover.onclick = function() {
-  mapCover.classList.toggle("nodisplay");
-}
+//var mapCover = document.getElementById('map-cover');
+//mapCover.onclick = function() {
+//  mapCover.classList.toggle("nodisplay");
+//}
 var fbimg = document.getElementById('fbimg');
 fbimg.onclick = function() {
   window.open("https://facebook.com/HuskyArchery",'_blank');
@@ -123,12 +148,87 @@ var headerimg = document.getElementById('headerimg');
 
 function parallaxheader(){
  var scrolltop = window.pageYOffset // get number of pixels document has scrolled vertically 
- headerimg.style.top = -scrolltop * .2 + 'px' // move bubble1 at 20% of scroll rate
+ headerimg.style.top = -scrolltop * .5 + 'px' // move headerimg at 50% of scroll rate
 }
  
 window.addEventListener('scroll', function(){ // on page scroll
- requestAnimationFrame(parallaxheader) // call parallaxbubbles() on next available screen paint
+ requestAnimationFrame(parallaxheader);
 }, false)
+</script>
+
+<script>
+// Animate svg paths
+var styleIndex = -1;
+for (var i = 0; i < document.styleSheets.length; ++i) {
+  if (/style.css/i.test(document.styleSheets[i].href)) {
+    styleIndex = i;
+    break;
+  }
+}
+var cssRuleCode = document.all ? 'rules' : 'cssRules'; //account for IE and FF
+var rules = document.styleSheets[styleIndex][cssRuleCode];
+for (var i = 0; i < rules.length; ++i) {
+  if (/.doorframe path/i.test(rules[i].selectorText)){
+    styleIndex = i;
+    break;
+  }
+}
+var rule = rules[styleIndex];
+var value = rule.value;            //both selectorText and value are settable.
+var path = document.querySelector('.doorframe path');
+var length = path.getTotalLength();
+//rule.style.strokeDasharray = length + "px";
+//rule.style.strokeDashoffset = length + "px";
+</script>
+
+<script>
+// Check is visible on scroll
+function posY(elm) {
+    var test = elm, top = 0;
+
+    while(!!test && test.tagName.toLowerCase() !== "body") {
+        top += test.offsetTop;
+        test = test.offsetParent;
+    }
+
+    return top;
+}
+
+function viewPortHeight() {
+    var de = document.documentElement;
+
+    if(!!window.innerWidth)
+    { return window.innerHeight; }
+    else if( de && !isNaN(de.clientHeight) )
+    { return de.clientHeight; }
+
+    return 0;
+}
+
+function scrollY() {
+    if( window.pageYOffset ) { return window.pageYOffset; }
+    return Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+}
+
+function checkVisible( elm ) {
+    var vpH = viewPortHeight(), // Viewport Height
+        st = scrollY(), // Scroll Top
+        y = posY(elm);
+
+    return (y > (vpH + st));
+}
+window.onscroll = function(){ // on page scroll
+ requestAnimationFrame(function(){
+  var doorframe = document.querySelector(".doorframe");
+  //if (checkVisible(doorframe)) {
+    doorframe.classList.add('animate');
+  //}
+  //var header = document.querySelector(".mainstrip .first")
+  //if (checkVisible(header)) {
+    parallaxheader();
+  //}
+ });
+}
 </script>
 
 <script>

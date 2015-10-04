@@ -11,11 +11,14 @@
 .map-cover{
   background:rgba(88,150,250,0.1);
 }
-.clock{
-  max-width:300px;
-  max-height:300px;
-  width:auto;
+.doorframe{
+  max-width:800px;
+  width:70%;
   height:auto;
+}
+.doorframe image{
+  height:100%;
+  width:100%;
 }
 .semipart{
   padding-top:7%;padding-bottom:7%;
@@ -79,9 +82,15 @@
      -moz-transform-style: preserve-3d;
           transform-style: preserve-3d;
 }
+.mainstrip.first, .mainstrip.backfirst{
+  min-height:600px;
+}
 @media (max-width:800px) {
   .mainstrip{
     min-height:450px;
+  }
+  .mainstrip.first{
+    min-height:600px;
   }
 }
 .mainstrip.backfirst{
@@ -105,19 +114,93 @@
   color:black;
 }
 
-.mainstrip .part{
-  margin-top:20%;
+.mainstrip .container{
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right: 0;
 }
-.mainstrip .part h1{
+.mainstrip .space{
+  height:40%;
+}
+.mainstrip.fourth .space{
+  height:40%;
+}
+.mainstrip.first h1{
   font-variant: small-caps;
   font-size:4em;
   letter-spacing:3px;
   font-weight:bold;
-  margin-top:50px;
+  margin-top:0;
   font-family: “Century Gothic”, CenturyGothic, AppleGothic, sans-serif;
 }
-.mainstrip .part .centered{
+.mainstrip.first .centered{
   width:320px;
   text-align:left;
   margin-left:auto;margin-right:auto;
+}
+
+/*
+ * Pure CSS aspect ratio with no spacer images or js! :)
+ */
+
+.stretchy-wrapper {
+	width: 100%;
+	padding-bottom: 56.25%; /* 16:9 */
+	position: relative;
+}
+
+.stretchy-wrapper > div {
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right: 0;
+
+	color: white;
+	font-size: 24px;
+	text-align: center;
+
+  overflow:hidden;
+  background-position:center center;
+  background-size:cover;
+  background-color:#eee;
+  -ms-behavior: url(/static/background-size-polyfill/backgroundsize.min.htc);
+
+  -webkit-transform-style: preserve-3d;
+     -moz-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+.mainstrip.first{
+  min-height:0;
+  height:0;
+  padding-bottom:56.25%;
+}
+.stretchy-wrapper.archer{
+	padding-bottom: 56.25%;
+}
+.stretchy-wrapper.grouppic{
+	padding-bottom: 66%;
+}
+.stretchy-wrapper.archer > div{
+  background-image:url(/static/img/archer.jpg);
+}
+.stretchy-wrapper.grouppic > div{
+  background-image:url(/static/img/huskyarcheryclub.jpg);
+}
+
+/* Other aspect ratios to try:
+ * 56.25% = 16:9
+ * 75% = 4:3
+ * 66.66% = 3:2
+ * 62.5% = 8:5
+ */
+
+.doorframe path {
+  stroke-dasharray: 650;
+  stroke-dashoffset: 650;
+}
+.doorframe.animate path {
+  animation: dash 5s linear forwards;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
